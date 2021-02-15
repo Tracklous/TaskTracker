@@ -1,0 +1,4 @@
+export default {
+    SEARCH_QUERY: 'SEARCH_QUERY',
+    RESET_SEARCH: 'RESET_SEARCH'
+};
