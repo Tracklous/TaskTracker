@@ -5,12 +5,17 @@ import { Colors } from "../../themes";
 import { normalize, vh, vw } from "../../utils/dimension";
 import { closeModal, createTask, doEdit } from '../../redux/editModalSlice/EditModal.action';
 
+const TASK_TYPE_CREATE = 'create';
+const ANIM_TYPE = 'slide';
+const TASK_PLACEHOLDER = "Task Title";
+const TASK_DESCRIPTION = "Description";
+
 const EditModal = () => {
     const dispatch = useDispatch();
     const { showModal, title, type, modalData } = useSelector(({ editModalReducer }) => editModalReducer);
     const [titleVal, setTitleVal] = useState('');
     const [desc, setDesc] = useState('');
-    const isNewTask = type === 'create';
+    const isNewTask = type === TASK_TYPE_CREATE;
 
     useEffect(() => {
         setTitleVal(isNewTask ? '' : modalData.title);
@@ -28,7 +33,7 @@ const EditModal = () => {
 
     return (
         <Modal
-            animationType="slide"
+            animationType={ANIM_TYPE}
             transparent={true}
             visible={showModal}
             onRequestClose={closeModalAction}
@@ -40,13 +45,13 @@ const EditModal = () => {
                         style={styles.inputStyle}
                         value={titleVal}
                         onChangeText={(val => setTitleVal(val))}
-                        placeholder="Task Title"
+                        placeholder={TASK_PLACEHOLDER}
                     />
                     <TextInput
                         style={styles.inputStyle}
                         value={desc}
                         onChangeText={(val => setDesc(val))}
-                        placeholder="Description"
+                        placeholder={TASK_DESCRIPTION}
                         multiline
                     />
                     <View style={styles.buttonContainer}>
