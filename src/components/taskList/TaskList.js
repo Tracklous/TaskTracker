@@ -9,13 +9,17 @@ import { showModalEditTask } from '../../redux/editModalSlice/EditModal.action';
 import { deleteTask, startClockAction, stopClockAction } from '../../redux/trackerSlice/Tracker.action';
 
 const TimerClock = ({ startTime, taskPaused }) => {
-    const [timerClock, setTimerClock] = useState(new Date().getTime() - Number(startTime));
+    const getTimeDiff = ()=> {
+        return new Date().getTime() - Number(startTime)
+    };
+
+    const [timerClock, setTimerClock] = useState(getTimeDiff());
 
     useEffect(() => {
         let clockIntervalId;
         if (taskPaused) {
             clockIntervalId = setInterval(() => {
-                setTimerClock(millisecondsToFormat(new Date().getTime() - Number(startTime)));
+                setTimerClock(millisecondsToFormat(getTimeDiff()));
             }, 1000)
         }
         return () => clearInterval(clockIntervalId)
