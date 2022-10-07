@@ -20,6 +20,7 @@ const TrackerScreen = () => {
                 onPress={createTask}>
                 <Text style={styles.createText}>+</Text>
             </Pressable>
+            <Header title="Copyright © 2022 Tracklous " />
         </View>
     )
 };
